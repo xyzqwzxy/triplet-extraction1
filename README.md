@@ -1,6 +1,12 @@
-paragraph = """环境很好，位置独立性很强，比较安静很切合店名，半闲居，偷得半日闲。点了比较经典的菜品，味道果然不错！烤乳鸽，
-超级赞赞赞，脆皮焦香，肉质细嫩，超好吃。艇仔粥料很足，香葱自己添加，很贴心。金钱肚味道不错，不过没有在广州吃的烂，牙口不好的慎点。
-凤爪很火候很好，推荐。最惊艳的是长寿菜，菜料十足，很新鲜，清淡又不乏味道，而且没有添加调料的味道，搭配的非常不错！"""
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Oct 29 12:25:50 2018
+
+@author: xyz
+"""
+
+MODELDIR='ltp_data_v3.4.0'
+ltp = ltp_api(MODELDIR)
 sentences = SentenceSplitter.split(paragraph)
 
 for sentence in sentences:
@@ -22,11 +28,12 @@ for sentence in sentences:
         #labeller = output['role']
         #words = output['words']
         tuples_words = Parser2dataframe(words,postags,arcs)
+
         print('\n----- 搭配用语查找 -----\n')
         print(FindCollocation(tuples_words))
         print('\n----- 并列词查找 -----\n')
         print(FindSynonym(tuples_words))
         print('\n----- 核心观点抽取 -----\n')
-        print(CoreExtraction(tuples_words,words))
+        print(CoreExtraction(tuples_words, words))
         print('\n----- 实体名词搭配 -----\n')
         print(FindEntityCollocation(tuples_words))
